@@ -2,6 +2,7 @@ import * as yup from 'yup';
 
 export const StoreValidation = yup.object().shape({
   name: yup.string().required(),
+  cnpj: yup.string().required(),
   phone: yup.string().required(),
   partner: yup.boolean().required(),
   email: yup.string().email().required(),

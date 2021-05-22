@@ -25,6 +25,7 @@ class CompanyController {
 
     const company = new Company();
     company.name = body.name;
+    company.cnpj = body.cnpj;
     company.phone = body.phone;
     company.email = body.email;
     company.partner = body.partner;
@@ -83,6 +84,7 @@ class CompanyController {
 
     company.partner = body.partner;
     if (body.name) company.name = body.name;
+    if (body.cnpj) company.cnpj = body.cnpj;
     if (body.image) company.image = body.image;
     if (body.phone) company.phone = body.phone;
     if (body.email) company.email = body.email;
