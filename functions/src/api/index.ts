@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 
 import * as functions from "firebase-functions";
@@ -20,27 +20,21 @@ app.use(express.json());
 
 app.use(routes);
 
-app.use(
-  (
-    err: Error,
-    request: Request,
-    response: Response
-  ) => {
-    if (err instanceof AppError) {
-      return response.status(err.statusCode).json({
-        code: err.code,
-        message: err.message,
-        status: err.statusCode
-      });
-    }
-
-    console.error(err);
-
-    return response.status(500).json({
-      status: 500,
-      message: 'Internal server error.'
+app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
+  if (err instanceof AppError) {
+    return response.status(err.statusCode).json({
+      code: err.code,
+      message: err.message,
+      status: err.statusCode
     });
   }
-);
+
+  console.error(err);
+
+  return response.status(500).json({
+    status: 500,
+    message: 'Internal server error.'
+  });
+});
 
 export const api = regionalFunctions.https.onRequest(app);
