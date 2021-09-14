@@ -1,3 +1,5 @@
+import { logger } from 'firebase-functions';
+
 class AppError {
   public readonly message: string;
 
@@ -9,7 +11,7 @@ class AppError {
     this.message = message;
     this.code = code;
     this.statusCode = statusCode;
-    console.log('Error -> ', message + ' code:' + code)
+    logger.warn('Error -> ', message + ' code:' + code)
   }
 }
 

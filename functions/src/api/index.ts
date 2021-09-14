@@ -29,7 +29,7 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
     });
   }
 
-  console.error(err);
+  functions.logger.error(err);
 
   return response.status(500).json({
     status: 500,
