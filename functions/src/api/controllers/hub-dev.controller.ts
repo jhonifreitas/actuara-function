@@ -5,7 +5,7 @@ import ValidationError from '../../exceptions/validation-error';
 import hubDevService from '../services/hub-dev.service';
 import { CnpjValidation } from '../validations/hub-dev.validation';
 
-class CouponController {
+class HubDevController {
 
   async getCnpj(request: Request, response: Response) {
     const query = request.query as any;
@@ -24,4 +24,4 @@ class CouponController {
   }
 }
 
-export default new CouponController();
+export default new HubDevController();
